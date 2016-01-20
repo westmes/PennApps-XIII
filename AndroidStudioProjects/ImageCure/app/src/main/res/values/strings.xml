@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">Image Cure</string>
+    <string name="action_settings">Settings</string>
+    <string name="custom_font">IMAGE CURE</string>
+    <string name="action_share">Share</string>
+    <string name="action_setwallpaper">Set as wallpaper</string>
+    <string name="action_cat">Cat</string>
+    <string name="action_dog">Dog</string>
+
+    <string-array name="greeting">
+        <item>There is no snooze button on a cat who wants breakfast.</item>
+        <item>To a cat, ‘No’ means not while I’m looking.</item>
+        <item>Women and cats will do as they please, and men and dogs should relax and get used to the idea.</item>
+        <item>The only escape from the miseries of life are music and cats...</item>
+        <item>Meow” means “woof” in cat.</item>
+        <item>Dogs never bite me. Just humans.</item>
+        <item>A dog is the only thing on earth that loves you more than he loves himself.</item>
+        <item>If there are no dogs in Heaven, then when I die I want to go where they went.</item>
+        <item>Heaven goes by favor. If it went by merit, you would stay out and your dog would go in.</item>
+        <item>The only creatures that are evolved enough to convey pure love are dogs and infants.</item>
+    </string-array>
+
+
+    <array name="image_ids">
+        <item>@drawable/happy</item>
+        <item>@drawable/stressed</item>
+        <item>@drawable/angry</item>
+        <item>@drawable/excited</item>
+        <item>@drawable/nervous</item>
+        <item>@drawable/crying</item>
+    </array>
+
+    <string name="title_activity_display_image">DisplayImage</string>
+    <string name="client_id">a81889d2b44a42018290a6ee85d4dda6</string>
+    <string name="client_secret">9e2b441ab0f54d3e943f1b2cecb70112</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_display_insta_image">DisplayInstaImage</string>
+</resources>
