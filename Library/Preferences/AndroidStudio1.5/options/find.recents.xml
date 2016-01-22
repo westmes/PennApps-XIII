@@ -1,9 +1,0 @@
-<application>
-  <component name="FindRecents">
-    <findStrings>
-      <find>position</find>
-      <find>pipeline</find>
-      <find>fab</find>
-    </findStrings>
-  </component>
-</application>
