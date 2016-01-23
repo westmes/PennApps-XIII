@@ -7,32 +7,33 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     tools:context="com.example.grace.location.MainActivity">
 
     <fragment
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:id="@+id/map"
-        android:layout_width="200dp"
-        android:layout_height="300dp"
-        android:layout_gravity="center"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_gravity="top"
         android:layout_weight="1" />
 
     <LinearLayout
         android:layout_width="50dp"
-        android:layout_height="50dp">
+        android:layout_height="50dp"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textSize="10dip"/>
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2"
             android:layout_weight="1" />
     </LinearLayout>
 
