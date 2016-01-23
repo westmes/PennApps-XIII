@@ -23,11 +23,13 @@ import android.widget.TimePicker;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.parse.ParseACL;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
@@ -110,22 +112,35 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
         updateLabel();
         Log.d("time", String.valueOf(date));
 
-//        spinner = (Spinner) findViewById(R.id.food);
-//        adapter = ArrayAdapter.createFromResource(this,
-//                R.array.food, android.R.layout.simple_spinner_item);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spinner.setAdapter(adapter);
-
         ParseUser currentUser = ParseUser.getCurrentUser();
         if (currentUser != null) {
             // do stuff with the user
             Log.i("username", currentUser.getUsername());
-            //currentUser.logOut();
+            currentUser.logOut();
         } else {
             // show the signup or login screen
             Intent intent = new Intent(this, SignupLogin.class);
             startActivity(intent);
         }
+
+        Button responseButton = (Button) findViewById(R.id.response);
+        responseButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                respond();
+            }
+        });
+
+        Button checkStatusButton = (Button) findViewById(R.id.check_stats);
+        checkStatusButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                checkStatus();
+            }
+        });
+
     }
 
     private void updateLabel() {
@@ -142,7 +157,13 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+
         mMap = googleMap;
+        //Add a marker in Philly and move the camera
+        LatLng  current = new LatLng(39.952573,-75.191062);
+        mMap.addMarker(new MarkerOptions().position(current).title("CURRENT"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(current));
+
     }
 
     @Override
@@ -166,9 +187,9 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
                 mLatitude = mLastLocation.getLatitude();
                 mLongitude = mLastLocation.getLongitude();
 
-                LatLng your_location = new LatLng(mLongitude, mLatitude);
-                mMap.getUiSettings().setZoomControlsEnabled(true);
-                mMap.addMarker(new MarkerOptions().position(your_location).title(TAG).draggable(true));
+//                LatLng your_location = new LatLng(mLongitude, mLatitude);
+//                mMap.getUiSettings().setZoomControlsEnabled(true);
+//                mMap.addMarker(new MarkerOptions().position(your_location).title(TAG).draggable(true));
 
                 Log.d("edf","edf");
                 Log.d("La", String.valueOf(mLatitude));
@@ -203,12 +224,16 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
         }
     }
 
+
     public void sendRequest(View view) {
         Log.d("sendRequestToDatabase","first line");
         ParseUser currentUser = ParseUser.getCurrentUser();
         Date date = dateAndTime.getTime();
         ParseGeoPoint currentLocation = new ParseGeoPoint(mLatitude, mLongitude);
         ParseObject userRequestObject = new ParseObject("UserRequestObject");
+        ParseACL defaultACL = new ParseACL();
+        defaultACL.setPublicReadAccess(true);
+        ParseACL.setDefaultACL(defaultACL,true);
         userRequestObject.put("RequestedTime", date);
         // Remember to change msg and category to user input
         EditText et = (EditText) findViewById(R.id.message);
@@ -237,6 +262,20 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
 //    public void onNothingSelected(AdapterView<?> parent) {
 //
 //    }
+
+    private void respond() {
+        Intent intent = new Intent(this, Response.class);
+        startActivity(intent);
+        intent.putExtra("latitude",mLatitude);
+        intent.putExtra("longitude",mLongitude);
+    }
+
+    private void checkStatus() {
+        Intent intent = new Intent(this,CheckStatus.class);
+        startActivity(intent);
+    }
+
+
 }
 
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">location</string>
+    <string name="app_name">U-Foodie</string>
     <string name="title_activity_maps">Map</string>
     <string name="parse_app_id">ODs7WWEbUC6HMflU4IllZnj7fUPQq44ECGAwW7Tr</string>
     <string name="parse_client_key">u4LX7yGvbwSXZ039lCuz5uGZkTy5tNPqqU69YoIg</string>
@@ -29,4 +29,6 @@
         <item>Thai</item>
         <item>FoodTruck</item>
     </string-array>
+    <string name="title_activity_response">Response</string>
+    <string name="title_activity_check_status">CheckStatus</string>
 </resources>
