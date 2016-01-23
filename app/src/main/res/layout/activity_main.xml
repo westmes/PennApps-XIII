@@ -3,100 +3,118 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:orientation="vertical"
     tools:context="com.example.grace.location.MainActivity">
 
-    <LinearLayout
-        android:layout_marginLeft="10dip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/fab_margin"
-            android:layout_marginTop="@dimen/fab_margin"
-            android:textSize="20sp"
-            android:textStyle="bold|normal"
-            android:text="You Are HERE ⬇"/>
-
-        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_marginLeft="15dip"
-            android:layout_marginTop="10dip"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
-            android:id="@+id/map"
-            android:layout_width="310dip"
-            android:layout_height="300dip"
-            android:layout_gravity="center_vertical" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="15dip"
-            android:layout_marginTop="10dip"
-            android:orientation="horizontal">
+            android:layout_marginLeft="10dip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <Button
-                android:id="@+id/request"
-                android:layout_width="150dip"
-                android:layout_height="45dip"
-                android:text="Request"
-                android:textStyle="normal"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/fab_margin"
+                android:layout_marginTop="@dimen/fab_margin"
+                android:textSize="20sp"
+                android:textStyle="bold|normal"
+                android:text="You Are HERE ⬇"/>
 
-            <Button
-                android:id="@+id/response"
+            <fragment xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_marginLeft="15dip"
-                android:layout_width="150dip"
-                android:layout_height="45dip"
-                android:text="Response"
-                android:textStyle="normal"/>
+                android:layout_marginTop="10dip"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:id="@+id/map"
+                android:layout_width="310dip"
+                android:layout_height="300dip"
+                android:layout_gravity="center_vertical" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dip"
+                android:layout_marginTop="10dip"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/request"
+                    android:layout_width="150dip"
+                    android:layout_height="45dip"
+                    android:text="Request"
+                    android:textStyle="normal"
+                    android:onClick="sendRequest"/>
+
+                <Button
+                    android:id="@+id/response"
+                    android:layout_marginLeft="15dip"
+                    android:layout_width="150dip"
+                    android:layout_height="45dip"
+                    android:text="Response"
+                    android:textStyle="normal"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dip"
+                android:layout_marginLeft="15dip"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/time"
+                    android:layout_width="150dip"
+                    android:layout_height="45dip"
+                    android:text="When"
+                    android:textStyle="normal"/>
+
+                <!--<Spinner-->
+                    <!--style="@style/spinner_style"-->
+                    <!--android:id="@+id/food"-->
+                    <!--android:layout_marginLeft="15dip"-->
+                    <!--android:layout_width="150dip"-->
+                    <!--android:layout_height="45dip"-->
+                    <!--android:text="What"-->
+                    <!--android:textStyle="normal"/>-->
+                <EditText
+                    android:id="@+id/food"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="What do you want to eat?"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/dateAndTime"
+                android:layout_marginLeft="20dip"
+                android:layout_width="320dip"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="text"/>
+
+            <Button
+                android:id="@+id/check_stats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Check Status"
+                android:textStyle="normal"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/message"
+                android:layout_width="300dip"
+                android:layout_height="50dip"
+                android:layout_marginLeft="20dip"
+                android:hint="Message: How to reach you"/>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dip"
-            android:layout_marginLeft="15dip"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/time"
-                android:layout_width="150dip"
-                android:layout_height="45dip"
-                android:text="When"
-                android:textStyle="normal"/>
-
-            <Spinner
-                style="@style/spinner_style"
-                android:id="@+id/food"
-                android:layout_marginLeft="15dip"
-                android:layout_width="150dip"
-                android:layout_height="45dip"
-                android:text="What"
-                android:textStyle="normal"/>
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/dateAndTime"
-            android:layout_marginLeft="20dip"
-            android:layout_width="320dip"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:text="text"/>
-
-        <Button
-            android:id="@+id/check_stats"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Check Status"
-            android:textStyle="normal"
-            android:textSize="15sp" />
-
-    </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

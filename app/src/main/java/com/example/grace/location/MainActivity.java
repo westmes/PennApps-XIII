@@ -3,6 +3,7 @@ package com.example.grace.location;
 import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -26,6 +28,9 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.parse.ParseGeoPoint;
+import com.parse.ParseObject;
+import com.parse.ParseUser;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -37,10 +42,13 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
     private GoogleMap mMap;
     private GoogleApiClient mGoogleApiClient;
     protected static final String TAG = "Your Current Location";
-    double mLatitude;
-    double mLongitude;
+    private double mLatitude;
+    private double mLongitude;
     private Location mLastLocation;
     private Date date;
+    private ArrayAdapter<CharSequence> adapter;
+    private Spinner spinner;
+    String food;
 
     DateFormat fmtDateAndTime= DateFormat.getDateTimeInstance();
     TextView dateAndTimeLabel;
@@ -102,12 +110,22 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
         updateLabel();
         Log.d("time", String.valueOf(date));
 
-        Spinner spinner = (Spinner) findViewById(R.id.food);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.food, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+//        spinner = (Spinner) findViewById(R.id.food);
+//        adapter = ArrayAdapter.createFromResource(this,
+//                R.array.food, android.R.layout.simple_spinner_item);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinner.setAdapter(adapter);
 
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        if (currentUser != null) {
+            // do stuff with the user
+            Log.i("username", currentUser.getUsername());
+            //currentUser.logOut();
+        } else {
+            // show the signup or login screen
+            Intent intent = new Intent(this, SignupLogin.class);
+            startActivity(intent);
+        }
     }
 
     private void updateLabel() {
@@ -136,7 +154,7 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
     @Override
     public void onConnected(Bundle bundle) {
 
-        Log.d("abc","abc");
+        Log.d("abc", "abc");
 
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             mMap.setMyLocationEnabled(true);
@@ -177,7 +195,6 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
          Log.d("FAILED", "Connection failed: ConnectionResult.getErrorCode() = " + result.getErrorCode());
     }
 
-
     @Override
     protected void onStop() {
         super.onStop();
@@ -186,6 +203,40 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
         }
     }
 
+    public void sendRequest(View view) {
+        Log.d("sendRequestToDatabase","first line");
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        Date date = dateAndTime.getTime();
+        ParseGeoPoint currentLocation = new ParseGeoPoint(mLatitude, mLongitude);
+        ParseObject userRequestObject = new ParseObject("UserRequestObject");
+        userRequestObject.put("RequestedTime", date);
+        // Remember to change msg and category to user input
+        EditText et = (EditText) findViewById(R.id.message);
+        String msg = et.getText().toString();
+
+        EditText et2 = (EditText) findViewById(R.id.food);
+        String msg2 = et2.getText().toString();
+
+        userRequestObject.put("Message",msg);
+        userRequestObject.put("FoodCategory",msg2);
+        userRequestObject.put("UserID",currentUser.getUsername());
+        userRequestObject.put("Response", false);
+        userRequestObject.put("Location", currentLocation);
+
+        userRequestObject.saveInBackground();
+
+    }
+
+//    @Override
+//    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//        String food = adapter.getItem(position).toString();
+//        Log.d("food",food);
+//    }
+//
+//    @Override
+//    public void onNothingSelected(AdapterView<?> parent) {
+//
+//    }
 }
 
 
