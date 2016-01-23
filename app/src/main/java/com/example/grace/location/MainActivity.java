@@ -11,8 +11,10 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -73,7 +75,7 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
 
         buildGoogleApiClient();
 
-        Button btn=(Button)findViewById(R.id.date);
+        Button btn=(Button)findViewById(R.id.time);
 
         btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -82,19 +84,29 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
                         dateAndTime.get(Calendar.YEAR),
                         dateAndTime.get(Calendar.MONTH),
                         dateAndTime.get(Calendar.DAY_OF_MONTH)).show();
+
+                new TimePickerDialog(MainActivity.this,
+                        t, dateAndTime.get(Calendar.HOUR_OF_DAY),
+                        dateAndTime.get(Calendar.MINUTE), true).show();
             }
         });
 
-        btn=(Button)findViewById(R.id.time);
-        btn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                new TimePickerDialog(MainActivity.this, t, dateAndTime.get(Calendar.HOUR_OF_DAY), dateAndTime.get(Calendar.MINUTE), true).show();
-            }
-        });
+////        btn=(Button)findViewById(R.id.time);
+//        btn.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                new TimePickerDialog(MainActivity.this, t, dateAndTime.get(Calendar.HOUR_OF_DAY), dateAndTime.get(Calendar.MINUTE), true).show();
+//            }
+//        });
 
         dateAndTimeLabel=(TextView)findViewById(R.id.dateAndTime);
         updateLabel();
         Log.d("time", String.valueOf(date));
+
+        Spinner spinner = (Spinner) findViewById(R.id.food);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.food, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
 
     }
 

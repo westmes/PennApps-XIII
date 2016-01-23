@@ -11,39 +11,63 @@
     tools:showIn="@layout/activity_signup_login"
     tools:context="com.example.grace.location.SignupLogin">
 
-    <EditText
-        android:id="@+id/username"
+    <ImageView
+        android:id="@+id/login_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_marginTop="120dip"
+        android:layout_marginLeft="70dip"
+        android:layout_width="200dip"
+        android:layout_height="wrap_content"
         android:hint="@string/user_name"/>
+
     <EditText
         android:id="@+id/password"
-        android:layout_width="wrap_content"
+        android:layout_marginTop="10dip"
+        android:layout_marginLeft="70dip"
+        android:layout_width="200dip"
         android:layout_height="wrap_content"
         android:hint="@string/password"
         android:imeOptions="actionUnspecified"
         android:inputType="textPassword"
-        android:maxLines="1" android:singleLine="true" />
+        android:maxLines="1"
+        android:singleLine="true" />
     <EditText
         android:id="@+id/email"
-        android:layout_width="wrap_content"
+        android:layout_marginTop="10dip"
+        android:layout_marginLeft="70dip"
+        android:layout_width="200dip"
         android:layout_height="wrap_content"
         android:hint="@string/email"/>
 
-    <Button android:id="@+id/sign_up_button"
-        style="?android:textAppearanceSmall"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_marginLeft="20dip"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/action_sign_up"
-        android:textStyle="bold" />
+        android:orientation="horizontal">
 
-    <Button android:id="@+id/log_in_button"
-        style="?android:textAppearanceSmall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/action_log_in"
-        android:textStyle="bold" />
+        <Button android:id="@+id/log_in_button"
+            style="?android:textAppearanceSmall"
+            android:layout_width="130dip"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/action_log_in"
+            android:textStyle="bold" />
+
+        <Button android:id="@+id/sign_up_button"
+            style="?android:textAppearanceSmall"
+            android:layout_marginLeft="20dip"
+            android:layout_width="130dip"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/action_sign_up"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
 
 </LinearLayout>
