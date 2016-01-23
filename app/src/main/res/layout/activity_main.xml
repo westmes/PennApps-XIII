@@ -10,32 +10,83 @@
     android:orientation="vertical"
     tools:context="com.example.grace.location.MainActivity">
 
-    <fragment
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:id="@+id/map"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
-        android:layout_gravity="top" />
-
     <LinearLayout
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="10sp"/>
+            android:layout_marginLeft="@dimen/fab_margin"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:textSize="20sp"
+            android:textStyle="bold|normal"
+            android:text="You Are HERE ⬇"/>
+
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_marginLeft="30dip"
+            android:layout_marginTop="10dip"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:id="@+id/map"
+            android:layout_width="310dip"
+            android:layout_height="300dip"
+            android:layout_gravity="center_vertical" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30dip"
+            android:layout_marginTop="20dip"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/request"
+                android:layout_width="150dip"
+                android:layout_height="50dip"
+                android:text="Request"
+                android:textStyle="normal"/>
+
+            <Button
+                android:id="@+id/response"
+                android:layout_marginLeft="10dip"
+                android:layout_width="150dip"
+                android:layout_height="50dip"
+                android:text="Response"
+                android:textStyle="normal"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dip"
+            android:layout_marginLeft="30dip"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/time"
+                android:layout_width="150dip"
+                android:layout_height="50dip"
+                android:text="time"
+                android:textStyle="normal"/>
+
+            <Button
+                android:id="@+id/date"
+                android:layout_marginLeft="10dip"
+                android:layout_width="150dip"
+                android:layout_height="50dip"
+                android:text="Date"
+                android:textStyle="normal"/>
+
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/dateAndTime"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="10sp"
-            android:layout_weight="1" />
-    </LinearLayout>
+            android:layout_height="wrap_content" />
 
+
+    </LinearLayout>
 
 </LinearLayout>

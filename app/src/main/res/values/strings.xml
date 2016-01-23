@@ -16,4 +16,5 @@
     <string name="error_field_required">Field Required</string>
     <string name="error_invalid_email">Invalid Email Address</string>
     <string name="title_activity_starter_application">StarterApplication</string>
+    <string name="google_app_id">123456789012</string>
 </resources>
