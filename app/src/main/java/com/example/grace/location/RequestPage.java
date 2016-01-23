@@ -6,7 +6,11 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.EditText;
+
 import com.parse.ParseObject;
+
+import java.util.GregorianCalendar;
 
 public class RequestPage extends AppCompatActivity {
 
@@ -25,10 +29,19 @@ public class RequestPage extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
-        ParseObject testObject = new ParseObject("TestObject");
-        testObject.put("foo", "bar");
-        testObject.saveInBackground();
     }
 
+    public void sendRequest(View view) {
+        EditText editText = (EditText) findViewById(R.id.edit_message);
+        String message = editText.getText().toString();
+        if (!message.isEmpty()){
+            ParseObject userRequestObject = new ParseObject("UserRequestObject");
+            userRequestObject.put("RequestedTime", message);
+            userRequestObject.saveInBackground();
+        }
+    }
+
+    public void queryRequest(View view) {
+        GregorianCalendar queryTime = 
+    }
 }
