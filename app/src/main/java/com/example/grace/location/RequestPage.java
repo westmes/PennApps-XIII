@@ -1,12 +1,15 @@
 package com.example.grace.location;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
-import com.parse.ParseObject;
+
+import com.parse.ParseUser;
 
 public class RequestPage extends AppCompatActivity {
 
@@ -26,9 +29,24 @@ public class RequestPage extends AppCompatActivity {
             }
         });
 
-        ParseObject testObject = new ParseObject("TestObject");
+        /*ParseObject testObject = new ParseObject("TestObject");
         testObject.put("foo", "bar");
-        testObject.saveInBackground();
+        testObject.saveInBackground();*/
+
+        ParseUser currentUser = ParseUser.getCurrentUser();
+
+        if (currentUser != null) {
+            // do stuff with the user
+            Log.i("username", currentUser.getUsername());
+            //currentUser.logOut();
+        } else {
+            // show the signup or login screen
+            Intent intent = new Intent(this, SignupLogin.class);
+            startActivity(intent);
+            /*EditText editText = (EditText) findViewById(R.id.edit_message);
+            String message = editText.getText().toString();
+            intent.putExtra(EXTRA_MESSAGE, message);*/
+        }
     }
 
 }

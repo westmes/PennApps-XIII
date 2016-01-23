@@ -24,8 +24,8 @@ public class MapsActivity extends FragmentActivity
     private GoogleMap mMap;
     private GoogleApiClient mGoogleApiClient;
     protected static final String TAG = "location-sample";
-    private double mLatitude;
-    private double mLongitude;
+    double mLatitude;
+    double mLongitude;
     private Location mLastLocation;
     TextView mLatitudeText;
     TextView mLongitudeText;
@@ -49,9 +49,9 @@ public class MapsActivity extends FragmentActivity
                 .addApi(LocationServices.API)
                 .build();
 
-        Intent map_main = new Intent(this,MainActivity.class);
-        map_main.putExtra("LOCAL1",mLatitude);
-        map_main.putExtra("LOCAL2", mLongitude);
+        Intent map_main = new Intent(MapsActivity.this, MainActivity.class);
+        map_main.putExtra("LOCAL1",15);
+        map_main.putExtra("LOCAL2", 16);
         startActivity(map_main);
 
     }
@@ -85,12 +85,18 @@ public class MapsActivity extends FragmentActivity
     public void onConnected(Bundle connectionHint) {
 
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+
+
         if (mLastLocation != null) {
             mLatitude = mLastLocation.getLatitude();
             mLongitude = mLastLocation.getLongitude();
-            mLatitudeText.setText(String.valueOf(mLastLocation.getLatitude()));
-            mLongitudeText.setText(String.valueOf(mLastLocation.getLongitude()));
+//            mLatitudeText.setText(String.valueOf(mLastLocation.getLatitude()));
+//            mLongitudeText.setText(String.valueOf(mLastLocation.getLongitude()));
         }
+
+
+
+
     }
 
     @Override

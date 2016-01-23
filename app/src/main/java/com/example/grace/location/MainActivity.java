@@ -17,13 +17,13 @@ public class MainActivity extends FragmentActivity {
         setContentView(R.layout.activity_main);
 
         Intent map_int = getIntent();
-        String mLongtitude = map_int.getStringExtra("LOCAL1");
-        String mLatitude = map_int.getStringExtra("LOCAL2");
+        double mLongtitude = map_int.getDoubleExtra("LOCAL1",1);
+        double mLatitude = map_int.getDoubleExtra("LOCAL2",0);
 
         TextView textView1 = (TextView) findViewById(R.id.textView1);
         TextView textView2 = (TextView) findViewById(R.id.textView2);
-        textView1.setText(mLatitude);
-        textView2.setText(mLongtitude);
+        textView1.setText(String.valueOf(mLatitude));
+        textView2.setText(String.valueOf(mLongtitude));
 
 
     }
