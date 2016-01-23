@@ -18,8 +18,9 @@ public class StarterApplication extends Application {
 
         // Add your initialization code here
         Parse.initialize(this);
+        ParseUser.enableRevocableSessionInBackground();
 
-        ParseUser.enableAutomaticUser();
+        //ParseUser.enableAutomaticUser();
         ParseACL defaultACL = new ParseACL();
         // Optionally enable public read access.
         // defaultACL.setPublicReadAccess(true);
