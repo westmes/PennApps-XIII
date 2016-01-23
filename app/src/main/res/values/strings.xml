@@ -29,4 +29,6 @@
         <item>Thai</item>
         <item>FoodTruck</item>
     </string-array>
+    <string name="title_activity_response">Response</string>
+    <string name="title_activity_check_status">CheckStatus</string>
 </resources>

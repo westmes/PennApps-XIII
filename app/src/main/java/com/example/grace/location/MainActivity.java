@@ -3,6 +3,7 @@ package com.example.grace.location;
 import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -103,11 +104,31 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
         updateLabel();
         Log.d("time", String.valueOf(date));
 
+
         Spinner spinner = (Spinner) findViewById(R.id.food);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.food, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+
+        Button responseButton = (Button) findViewById(R.id.response);
+        responseButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                respond();
+            }
+        });
+
+        Button checkStatusButton = (Button) findViewById(R.id.check_stats);
+        checkStatusButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                checkStatus();
+            }
+        });
+
 
     }
 
@@ -143,7 +164,7 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
     @Override
     public void onConnected(Bundle bundle) {
 
-        Log.d("abc","abc");
+        Log.d("abc", "abc");
 
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             mMap.setMyLocationEnabled(true);
@@ -191,6 +212,18 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
         if (mGoogleApiClient.isConnected()) {
             mGoogleApiClient.disconnect();
         }
+    }
+
+    private void respond() {
+        Intent intent = new Intent(this, Response.class);
+        startActivity(intent);
+        intent.putExtra("latitude",mLatitude);
+        intent.putExtra("longitude",mLongitude);
+    }
+
+    private void checkStatus() {
+        Intent intent = new Intent(this,CheckStatus.class);
+        startActivity(intent);
     }
 
 }
