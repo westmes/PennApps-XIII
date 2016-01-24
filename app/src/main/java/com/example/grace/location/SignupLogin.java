@@ -9,7 +9,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.parse.LogInCallback;
 import com.parse.ParseAnalytics;
@@ -114,10 +113,10 @@ public class SignupLogin extends AppCompatActivity {
                 if (e == null) {
 
                     //Toaster: sign up successful! Now log in.
-                    CharSequence success = "Sign up successful! Now log in!";
-                    int duration = Toast.LENGTH_SHORT;
-                    Toast signUpYes = Toast.makeText(context, success, duration);
-                    signUpYes.show();
+//                    CharSequence success = "Sign up successful! Now log in!";
+//                    int duration = Toast.LENGTH_SHORT;
+//                    Toast signUpYes = Toast.makeText(context, success, duration);
+//                    signUpYes.show();
                 } else {
                     // Sign up didn't succeed. Look at the ParseException
                     //to figure out what went wrong

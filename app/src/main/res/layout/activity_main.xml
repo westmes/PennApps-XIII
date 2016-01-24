@@ -86,7 +86,8 @@
                     android:id="@+id/food"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="What do you want to eat?"/>
+                    android:hint="What do you want to eat?"
+                    android:textSize="13sp"/>
 
             </LinearLayout>
 
@@ -112,6 +113,7 @@
                 android:layout_width="300dip"
                 android:layout_height="50dip"
                 android:layout_marginLeft="20dip"
+                android:textSize="15sp"
                 android:hint="Message: How to reach you"/>
 
         </LinearLayout>

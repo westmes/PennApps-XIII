@@ -116,7 +116,9 @@ public class MainActivity extends FragmentActivity implements GoogleApiClient.Co
         if (currentUser != null) {
             // do stuff with the user
             Log.i("username", currentUser.getUsername());
-            currentUser.logOut();
+            //currentUser.logOut();
+            //Intent intent = new Intent(this, SignupLogin.class);
+            //startActivity(intent);
         } else {
             // show the signup or login screen
             Intent intent = new Intent(this, SignupLogin.class);
